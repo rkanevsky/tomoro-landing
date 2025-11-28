@@ -1,20 +1,101 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Tomoro — Time Tracking Without Cloud</title>
-    </head>
+<BaseLayout title="Tomoro">
+    <!-- ВСТАВЛЯЕШЬ СЮДА тот большой hero-блок -->
+    <section
+        style="
+        background: #071415;
+        min-height: 100vh;
 
-    <body class="bg-white dark:bg-[#1C1C1E] text-[#1C1C1E] dark:text-white">
-        <main
-            class="min-h-screen flex flex-col items-center justify-center text-center px-6"
+        /* ГЛАВНОЕ: идеальная центровка */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0 24px;
+        text-align: center;
+        font-family: 'Geist', sans-serif;
+        position: relative;
+        overflow: hidden;
+      "
+    >
+        <!-- noise -->
+        <div
+            style="
+        position: absolute;
+        inset: 0;
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAANJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=');
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 1;
+      "
         >
-            <h1 class="text-5xl font-semibold tracking-tight">Tomoro</h1>
-            <p class="text-xl mt-4 opacity-70">Simple. Local. Smart.</p>
-            <p class="mt-2 opacity-60">Coming soon</p>
-        </main>
-    </body>
-</html>
+        </div>
+
+        <div
+            style="
+          position: relative;
+          z-index: 2;
+          animation: fadeUp 1.2s ease-out forwards;
+          opacity: 0;
+          padding-top: 8vh;
+          padding-bottom: 8vh;
+        "
+        >
+            <h1
+                style="
+            font-size: clamp(48px, 10vw, 88px);
+            line-height: 1.05;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #E8F5F5;
+            margin: 0 0 32px 0;
+          "
+            >
+                Tomoro
+            </h1>
+
+            <p
+                style="
+            font-size: clamp(20px, 3.2vw, 28px);
+            line-height: 1.35;
+            font-weight: 400;
+            color: #8BA9A9;
+            margin: 0 auto 64px auto;
+            max-width: 720px;
+          "
+            >
+                A minimal offline cockpit for freelancers.
+            </p>
+
+            <p
+                style="
+            font-size: clamp(16px, 2.6vw, 20px);
+            line-height: 1.4;
+            font-weight: 400;
+            color: #01FF93;
+            opacity: 0.8;
+            margin: 0;
+          "
+            >
+                Coming soon.
+            </p>
+        </div>
+    </section>
+
+    <style>
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</BaseLayout>
