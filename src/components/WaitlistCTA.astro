@@ -1,105 +1,62 @@
 ---
-/* пустой фронтматтер обязателен */
+const success = Astro.url.searchParams.get("success") === "1";
 ---
-
 <section class="bg-dark border-b border-grid">
-    <div class="p-8 lg:p-16 max-w-2xl mx-auto">
-        <!-- Header -->
-        <div class="mb-12">
-            <h2 class="font-mono text-xs uppercase text-gray-500 mb-4">
-                Early Access
-            </h2>
-            <h3
-                class="text-4xl lg:text-5xl font-semibold uppercase mb-[32px] whitespace-nowrap"
-            >
-                Be first to try tomoro
-            </h3>
-        </div>
+  <div class="p-8 lg:p-16 max-w-2xl mx-auto">
+    <!-- Header -->
+    <div class="mb-12">
+      <h2 class="font-mono text-xs uppercase text-gray-500 mb-4">Early Access</h2>
+      <h3 class="text-4xl lg:text-5xl font-semibold uppercase mb-[32px] whitespace-nowrap">
+        Be first to try tomoro
+      </h3>
+    </div>
 
-        <!-- Subtitle -->
-        <p class="text-base lg:text-lg text-gray-400 mb-12 leading-relaxed">
+    {
+      success ? (
+        <div class="text-center mt-6">
+          <p class="text-lg text-accent font-semibold mb-2">✓ You're on the list!</p>
+          <p class="text-sm text-gray-400">
+            Check your email for updates. We'll be in touch soon.
+          </p>
+        </div>
+      ) : (
+        <>
+          <p class="text-base lg:text-lg text-gray-400 mb-12 leading-relaxed">
             Tomoro is a clean, offline workspace for solo professionals who want
             clarity instead of clutter. Join the waitlist to get early builds,
             updates, and a launch discount.
-        </p>
+          </p>
 
-        <!-- Email Form -->
-        <form
-            id="waitlist-form"
+          <!-- Native HTML form (required for Vercel Forms) -->
+          <form
             method="POST"
-            action="https://forms.vercel.app/api/submit?formName=tomoro-waitlist"
+            action="/?success=1"
             class="mb-6 flex gap-3"
-        >
+          >
             <input
-                type="email"
-                name="email"
-                placeholder="your email"
-                class="flex-1 bg-dark border border-light text-light px-4 py-3 rounded font-mono text-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-accent"
-                required
+              type="email"
+              name="email"
+              placeholder="your email"
+              class="flex-1 bg-dark border border-light text-light px-4 py-3 rounded font-mono text-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-accent"
+              required
             />
 
-            <!-- Required for Vercel Forms -->
+            <!-- Required by Vercel Forms -->
             <input type="hidden" name="_vercel_form" value="tomoro-waitlist" />
 
             <button
-                type="submit"
-                class="font-mono font-bold text-sm px-8 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 whitespace-nowrap"
+              type="submit"
+              class="font-mono font-bold text-sm px-8 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 whitespace-nowrap"
             >
-                Join Waitlist
+              Join Waitlist
             </button>
-        </form>
+          </form>
 
-        <!-- Success Message -->
-        <div id="success-message" style="display:none" class="text-center mt-6">
-            <p class="text-lg text-accent font-semibold mb-2">
-                ✓ You're on the list!
-            </p>
-            <p class="text-sm text-gray-400">
-                Check your email for updates. We'll be in touch soon.
-            </p>
-        </div>
-
-        <p class="text-xs text-gray-500 text-center">
+          <p class="text-xs text-gray-500 text-center">
             No spam. No marketing noise. Just product updates.
-        </p>
-    </div>
+          </p>
+        </>
+      )
+    }
+  </div>
 </section>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("waitlist-form");
-        const success = document.getElementById("success-message");
-
-        if (!form || !success) return;
-
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Joining...";
-
-            try {
-                const res = await fetch(form.action, {
-                    method: "POST",
-                    body: new FormData(form),
-                    redirect: "manual",
-                });
-
-                // Vercel Forms returns 200 or 302. Both count as success.
-                if (res.status < 400) {
-                    form.style.display = "none";
-                    success.style.display = "block";
-                } else {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = "Join Waitlist";
-                    alert("Something went wrong. Please try again.");
-                }
-            } catch (err) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Join Waitlist";
-                alert("Network error");
-            }
-        });
-    });
-</script>
