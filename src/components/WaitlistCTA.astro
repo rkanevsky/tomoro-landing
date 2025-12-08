@@ -63,41 +63,41 @@
         const form = document.getElementById("waitlist-form");
         const successMessage = document.getElementById("success-message");
 
-        if (form && successMessage) {
-            form.addEventListener("submit", async (e) => {
-                e.preventDefault();
+        if (!form || !successMessage) return;
 
-                const formData = new FormData(form);
-                const submitButton = form.querySelector(
-                    'button[type="submit"]',
-                );
-                if (!submitButton) return;
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-                const originalButtonText = submitButton.textContent;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (!submitButton) return;
 
-                submitButton.textContent = "Joining...";
-                submitButton.disabled = true;
+            const originalButtonText = submitButton.textContent;
 
-                try {
-                    const res = await fetch(window.location.href, {
-                        method: "POST",
-                        body: formData,
-                    });
+            submitButton.textContent = "Joining...";
+            submitButton.disabled = true;
 
-                    if (res.ok) {
-                        form.style.display = "none";
-                        successMessage.style.display = "block";
-                    } else {
-                        submitButton.textContent = originalButtonText;
-                        submitButton.disabled = false;
-                        alert("Something went wrong. Please try again.");
-                    }
-                } catch (error) {
+            try {
+                const res = await fetch(window.location.href, {
+                    method: "POST",
+                    body: formData,
+                });
+
+                // Условие успеха: любой ответ < 400 (включая 302/303 редиректы от Vercel)
+                if (res.status < 400) {
+                    form.style.display = "none";
+                    successMessage.style.display = "block";
+                } else {
                     submitButton.textContent = originalButtonText;
                     submitButton.disabled = false;
-                    alert("An error occurred. Please try again.");
+                    alert("Something went wrong. Please try again.");
                 }
-            });
-        }
+            } catch (error) {
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+                console.error("Form submission error:", error);
+                alert("An error occurred. Please try again.");
+            }
+        });
     });
 </script>
