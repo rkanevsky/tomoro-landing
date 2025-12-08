@@ -58,7 +58,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('waitlist-form');
+    const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
     const successMessage = document.getElementById('success-message');
 
     if (form && successMessage) {
@@ -66,7 +66,9 @@
         e.preventDefault();
 
         const formData = new FormData(form);
-        const submitButton = form.querySelector('button[type="submit"]');
+        const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+        if (!submitButton) return;
+
         const originalButtonText = submitButton.textContent;
 
         // Show loading state
