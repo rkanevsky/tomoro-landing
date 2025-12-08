@@ -39,9 +39,64 @@
             </button>
         </form>
 
+        <!-- Success Message -->
+        <div id="success-message" style="display:none" class="text-center mt-6">
+            <p class="text-lg text-accent font-semibold mb-2">
+                ✓ You're on the list!
+            </p>
+            <p class="text-sm text-gray-400">
+                Check your email for updates. We'll be in touch soon.
+            </p>
+        </div>
+
         <!-- Small disclaimer -->
         <p class="text-xs text-gray-500 text-center">
             No spam. No marketing noise. Just product updates.
         </p>
     </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('waitlist-form');
+    const successMessage = document.getElementById('success-message');
+
+    if (form && successMessage) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+
+        // Show loading state
+        submitButton.textContent = 'Joining...';
+        submitButton.disabled = true;
+
+        try {
+          const res = await fetch(window.location.href, {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (res.ok) {
+            // Hide form and show success message
+            form.style.display = 'none';
+            successMessage.style.display = 'block';
+          } else {
+            // Restore button on error
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+            alert('Something went wrong. Please try again.');
+          }
+        } catch (error) {
+          // Restore button on error
+          submitButton.textContent = originalButtonText;
+          submitButton.disabled = false;
+          console.error('Form submission error:', error);
+          alert('An error occurred. Please try again.');
+        }
+      });
+    }
+  });
+</script>
