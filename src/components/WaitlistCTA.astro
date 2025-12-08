@@ -9,7 +9,9 @@
             <h2 class="font-mono text-xs uppercase text-gray-500 mb-4">
                 Early Access
             </h2>
-            <h3 class="text-4xl lg:text-5xl font-semibold uppercase mb-[32px] whitespace-nowrap">
+            <h3
+                class="text-4xl lg:text-5xl font-semibold uppercase mb-[32px] whitespace-nowrap"
+            >
                 Be first to try tomoro
             </h3>
         </div>
@@ -57,48 +59,45 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
-    const successMessage = document.getElementById('success-message');
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("waitlist-form");
+        const successMessage = document.getElementById("success-message");
 
-    if (form && successMessage) {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+        if (form && successMessage) {
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
 
-        const formData = new FormData(form);
-        const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-        if (!submitButton) return;
+                const formData = new FormData(form);
+                const submitButton = form.querySelector(
+                    'button[type="submit"]',
+                );
+                if (!submitButton) return;
 
-        const originalButtonText = submitButton.textContent;
+                const originalButtonText = submitButton.textContent;
 
-        // Show loading state
-        submitButton.textContent = 'Joining...';
-        submitButton.disabled = true;
+                submitButton.textContent = "Joining...";
+                submitButton.disabled = true;
 
-        try {
-          const res = await fetch(window.location.href, {
-            method: 'POST',
-            body: formData,
-          });
+                try {
+                    const res = await fetch(window.location.href, {
+                        method: "POST",
+                        body: formData,
+                    });
 
-          if (res.ok) {
-            // Hide form and show success message
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
-          } else {
-            // Restore button on error
-            submitButton.textContent = originalButtonText;
-            submitButton.disabled = false;
-            alert('Something went wrong. Please try again.');
-          }
-        } catch (error) {
-          // Restore button on error
-          submitButton.textContent = originalButtonText;
-          submitButton.disabled = false;
-          console.error('Form submission error:', error);
-          alert('An error occurred. Please try again.');
+                    if (res.ok) {
+                        form.style.display = "none";
+                        successMessage.style.display = "block";
+                    } else {
+                        submitButton.textContent = originalButtonText;
+                        submitButton.disabled = false;
+                        alert("Something went wrong. Please try again.");
+                    }
+                } catch (error) {
+                    submitButton.textContent = originalButtonText;
+                    submitButton.disabled = false;
+                    alert("An error occurred. Please try again.");
+                }
+            });
         }
-      });
-    }
-  });
+    });
 </script>
