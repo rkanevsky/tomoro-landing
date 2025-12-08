@@ -1,5 +1,5 @@
 ---
-/* пустой фронтматтер — корректно */
+/* пустой фронтматтер обязателен */
 ---
 
 <section class="bg-dark border-b border-grid">
@@ -38,7 +38,7 @@
                 required
             />
 
-            <!-- Vercel Forms identifier -->
+            <!-- Required for Vercel Forms -->
             <input type="hidden" name="_vercel_form" value="tomoro-waitlist" />
 
             <button
@@ -59,7 +59,6 @@
             </p>
         </div>
 
-        <!-- Small disclaimer -->
         <p class="text-xs text-gray-500 text-center">
             No spam. No marketing noise. Just product updates.
         </p>
@@ -69,40 +68,37 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const form = document.getElementById("waitlist-form");
-        const successMessage = document.getElementById("success-message");
+        const success = document.getElementById("success-message");
 
-        if (!form || !successMessage) return;
+        if (!form || !success) return;
 
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const formData = new FormData(form);
-            const submitButton = form.querySelector('button[type="submit"]');
-            if (!submitButton) return;
-
-            const originalText = submitButton.textContent;
-            submitButton.textContent = "Joining...";
-            submitButton.disabled = true;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Joining...";
 
             try {
                 const res = await fetch(form.action, {
                     method: "POST",
-                    body: formData,
+                    body: new FormData(form),
                     redirect: "manual",
                 });
 
+                // Vercel Forms returns 200 or 302. Both count as success.
                 if (res.status < 400) {
                     form.style.display = "none";
-                    successMessage.style.display = "block";
+                    success.style.display = "block";
                 } else {
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Join Waitlist";
                     alert("Something went wrong. Please try again.");
                 }
             } catch (err) {
-                submitButton.textContent = originalText;
-                submitButton.disabled = false;
-                alert("An error occurred. Please try again.");
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Join Waitlist";
+                alert("Network error");
             }
         });
     });
