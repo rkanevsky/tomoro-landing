@@ -1,5 +1,5 @@
 ---
-
+/* пустой фронтматтер — корректно */
 ---
 
 <section class="bg-dark border-b border-grid">
@@ -24,7 +24,12 @@
         </p>
 
         <!-- Email Form -->
-        <form id="waitlist-form" method="POST" class="mb-6 flex gap-3">
+        <form
+            id="waitlist-form"
+            method="POST"
+            action="https://forms.vercel.app/api/submit?formName=tomoro-waitlist"
+            class="mb-6 flex gap-3"
+        >
             <input
                 type="email"
                 name="email"
@@ -32,7 +37,10 @@
                 class="flex-1 bg-dark border border-light text-light px-4 py-3 rounded font-mono text-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-accent"
                 required
             />
+
+            <!-- Vercel Forms identifier -->
             <input type="hidden" name="_vercel_form" value="tomoro-waitlist" />
+
             <button
                 type="submit"
                 class="font-mono font-bold text-sm px-8 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 whitespace-nowrap"
@@ -72,30 +80,28 @@
             const submitButton = form.querySelector('button[type="submit"]');
             if (!submitButton) return;
 
-            const originalButtonText = submitButton.textContent;
-
+            const originalText = submitButton.textContent;
             submitButton.textContent = "Joining...";
             submitButton.disabled = true;
 
             try {
-                const res = await fetch(window.location.href, {
+                const res = await fetch(form.action, {
                     method: "POST",
                     body: formData,
+                    redirect: "manual",
                 });
 
-                // Условие успеха: любой ответ < 400 (включая 302/303 редиректы от Vercel)
                 if (res.status < 400) {
                     form.style.display = "none";
                     successMessage.style.display = "block";
                 } else {
-                    submitButton.textContent = originalButtonText;
+                    submitButton.textContent = originalText;
                     submitButton.disabled = false;
                     alert("Something went wrong. Please try again.");
                 }
-            } catch (error) {
-                submitButton.textContent = originalButtonText;
+            } catch (err) {
+                submitButton.textContent = originalText;
                 submitButton.disabled = false;
-                console.error("Form submission error:", error);
                 alert("An error occurred. Please try again.");
             }
         });
