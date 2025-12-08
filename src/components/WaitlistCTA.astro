@@ -16,9 +16,7 @@ const success = Astro.url.searchParams.get("success") === "1";
       success ? (
         <div class="text-center mt-6">
           <p class="text-lg text-accent font-semibold mb-2">✓ You're on the list!</p>
-          <p class="text-sm text-gray-400">
-            Check your email for updates. We'll be in touch soon.
-          </p>
+          <p class="text-sm text-gray-400">Check your email for updates. We'll be in touch soon.</p>
         </div>
       ) : (
         <>
@@ -28,10 +26,10 @@ const success = Astro.url.searchParams.get("success") === "1";
             updates, and a launch discount.
           </p>
 
-          <!-- Native HTML form (Vercel Forms will intercept) -->
+          <!-- Form POST → our own API endpoint -->
           <form
             method="POST"
-            action="/?success=1"
+            action="/api/waitlist"
             class="mb-6 flex gap-3"
           >
             <input
@@ -42,7 +40,7 @@ const success = Astro.url.searchParams.get("success") === "1";
               required
             />
 
-            <!-- Required by Vercel Forms -->
+            <!-- Vercel Forms identifier -->
             <input type="hidden" name="_vercel_form" value="tomoro-waitlist" />
 
             <button
