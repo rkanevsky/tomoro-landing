@@ -1,0 +1,71 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-dark text-light font-sans overflow-x-hidden pt-20">
+    <!-- Noise overlay -->
+    <div class="fixed inset-0 pointer-events-none z-50 opacity-5 mix-blend-multiply" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`}}>
+    </div>
+
+    <!-- Custom cursor -->
+    <div id="cursor" class="fixed w-5 h-5 border border-light rounded-full pointer-events-none z-9999 mix-blend-difference" style="transform: translate(-50%, -50%);"></div>
+
+    <slot />
+
+    <style>
+      :root {
+        --z-9999: 9999;
+      }
+
+      .z-9999 {
+        z-index: 9999;
+      }
+    </style>
+
+    <script>
+      const cursor = document.getElementById('cursor');
+
+      if (cursor) {
+        document.addEventListener('mousemove', (e) => {
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
+        });
+
+        const hoverElements = document.querySelectorAll('[data-hover], a, button');
+
+        hoverElements.forEach(el => {
+          el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+          el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+      }
+    </script>
+
+    <style is:global>
+      * {
+        cursor: none;
+      }
+
+      #cursor {
+        opacity: 1;
+        transition: width 0.2s, height 0.2s, background-color 0.2s;
+      }
+
+      #cursor.hovered {
+        @apply w-12 h-12 bg-light border-none;
+      }
+    </style>
+  </body>
+</html>

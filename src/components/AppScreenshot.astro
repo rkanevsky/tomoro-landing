@@ -1,0 +1,294 @@
+---
+---
+
+<section class="bg-dark border-b border-grid">
+  <div class="p-4 lg:p-8 flex justify-center">
+    <!-- Carousel Container -->
+    <div class="carousel-container rounded-lg transition-all duration-300" style="max-width: 1200px;">
+      <!-- Carousel Wrapper -->
+      <div class="carousel-wrapper">
+        <div class="carousel-track">
+          <img src="/tsc.png" alt="App interface screenshot 1" class="carousel-slide" />
+          <img src="/exp_A.png" alt="App interface screenshot 2" class="carousel-slide" />
+          <img src="/exp_B.png" alt="App interface screenshot 3" class="carousel-slide" />
+          <img src="/solo.png" alt="App interface screenshot 4" class="carousel-slide" />
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <button class="carousel-btn carousel-prev" aria-label="Previous screenshot">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+      <button class="carousel-btn carousel-next" aria-label="Next screenshot">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Dot Indicators -->
+      <div class="carousel-dots">
+        <button class="dot active" aria-label="Go to screenshot 1" aria-current="true"></button>
+        <button class="dot" aria-label="Go to screenshot 2" aria-current="false"></button>
+        <button class="dot" aria-label="Go to screenshot 3" aria-current="false"></button>
+        <button class="dot" aria-label="Go to screenshot 4" aria-current="false"></button>
+      </div>
+
+      <!-- Screen Reader Live Region -->
+      <div class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Carousel Container */
+  .carousel-container {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Carousel Wrapper and Track */
+  .carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+    border-radius: 0.5rem;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Carousel Slides */
+  .carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    transition: filter 500ms ease-out, transform 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .carousel-slide:hover {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.08)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.04));
+    transform: scale(1.02);
+  }
+
+  /* Navigation Buttons */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease;
+    z-index: 10;
+    backdrop-filter: blur(4px);
+  }
+
+  .carousel-btn:hover {
+    background: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.2);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+  }
+
+  .carousel-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+
+  .carousel-prev {
+    left: -60px;
+  }
+
+  .carousel-next {
+    right: -60px;
+  }
+
+  /* Dot Indicators */
+  .carousel-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    cursor: pointer;
+    transition: all 200ms ease;
+    padding: 0;
+  }
+
+  .dot:hover {
+    transform: scale(1.2);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .dot.active {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .dot:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+
+  /* Screen Reader Only */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    .carousel-btn {
+      padding: 6px 10px;
+    }
+
+    .carousel-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .carousel-prev {
+      left: 8px;
+    }
+
+    .carousel-next {
+      right: 8px;
+    }
+
+    .carousel-dots {
+      bottom: 12px;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+    }
+  }
+</style>
+
+<script>
+  // Carousel state
+  let currentSlide = 0;
+  const totalSlides = 4;
+
+  // DOM elements
+  const carouselTrack = document.querySelector('.carousel-track') as HTMLElement;
+  const prevBtn = document.querySelector('.carousel-prev') as HTMLButtonElement;
+  const nextBtn = document.querySelector('.carousel-next') as HTMLButtonElement;
+  const dots = Array.from(document.querySelectorAll('.dot')) as HTMLButtonElement[];
+  const liveRegion = document.querySelector('[aria-live="polite"]') as HTMLElement;
+
+  // Update carousel display
+  function updateCarousel() {
+    // Update track transform
+    carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Update dots
+    dots.forEach((dot, index) => {
+      const isActive = index === currentSlide;
+      dot.classList.toggle('active', isActive);
+      dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+
+    // Announce to screen readers
+    liveRegion.textContent = `Showing screenshot ${currentSlide + 1} of ${totalSlides}`;
+  }
+
+  // Navigate to specific slide
+  function goToSlide(index: number) {
+    currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
+    updateCarousel();
+  }
+
+  // Next slide with wraparound
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarousel();
+  }
+
+  // Previous slide with wraparound
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  // Event listeners for buttons
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+
+  // Event listeners for dots
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => goToSlide(index));
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    // Only handle keyboard if carousel is in view/focused
+    const carouselContainer = document.querySelector('.carousel-container') as HTMLElement;
+    if (carouselContainer && (document.activeElement === prevBtn || document.activeElement === nextBtn || dots.some(d => document.activeElement === d))) {
+      switch (e.key) {
+        case 'ArrowLeft':
+          e.preventDefault();
+          prevSlide();
+          break;
+        case 'ArrowRight':
+          e.preventDefault();
+          nextSlide();
+          break;
+        case 'Home':
+          e.preventDefault();
+          goToSlide(0);
+          break;
+        case 'End':
+          e.preventDefault();
+          goToSlide(totalSlides - 1);
+          break;
+      }
+    }
+  });
+
+  // Initialize carousel
+  updateCarousel();
+</script>

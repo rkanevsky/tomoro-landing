@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist.ttf') format('truetype');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark text-light;
+  }
+
+  h1 {
+    @apply text-5xl lg:text-7xl font-light uppercase;
+  }
+
+  h2 {
+    @apply font-mono text-sm uppercase tracking-widest text-gray-500;
+  }
+
+  p {
+    @apply text-base lg:text-lg leading-relaxed;
+  }
+}
+
+@layer components {
+  .box {
+    @apply bg-dark p-8;
+  }
+
+  .btn {
+    @apply relative overflow-hidden;
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}

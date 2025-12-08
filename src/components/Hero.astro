@@ -1,0 +1,113 @@
+---
+
+---
+
+<section class="bg-dark border-b border-grid">
+    <!-- Hero Content -->
+    <div
+        class="max-w-7xl mx-auto bg-dark p-8 lg:p-16 flex flex-col justify-between min-h-[60vh]"
+    >
+        <div class="text-center">
+            <h2
+                class="font-mono text-xs uppercase letter-spacing text-gray-500 mb-4"
+            >
+                What is all about
+            </h2>
+            <h1
+                class="uppercase font-semibold inline-block"
+                style="font-size: 64px; line-height: 1.05; margin-bottom: 12px;"
+            >
+                Your work<br />deserves better<br />than a spreadsheet<span
+                    class="text-accent">.</span
+                >
+            </h1>
+        </div>
+        <div class="flex flex-col items-center">
+            <div style="height: 12px;"></div>
+            <p class="text-lg text-gray-400 max-w-lg leading-relaxed mb-8 text-left">
+                A private, offline environment crafted for solo professionals who
+                value simplicity. Track your projects, your clients, and your
+                earnings in a minimal interface that avoids cloud storage, and
+                avoids everything that pulls you out of focus — so your work stays
+                yours, and your attention stays uninterrupted.
+            </p>
+            <div class="text-center">
+                <button
+                    id="hero-waitlist-btn"
+                    class="font-mono font-bold text-sm px-6 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 bg-transparent cursor-pointer"
+                    style="box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.15);"
+                >
+                    JOIN WAITLIST
+                </button>
+                <p class="font-mono text-xs text-gray-500 mt-3">
+                    No spam. Early access only.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<style>
+    @keyframes rotate-sphere {
+        0% {
+            transform: rotate3d(1, 1, 1, 0deg);
+        }
+        100% {
+            transform: rotate3d(1, 1, 1, 360deg);
+        }
+    }
+
+    .animate-rotate-sphere {
+        animation: rotate-sphere 10s linear infinite;
+    }
+</style>
+
+<script>
+    const container = document.getElementById('animation-container');
+    const animationCenter = document.getElementById('animation-center');
+
+    if (container && animationCenter) {
+        document.addEventListener('mousemove', (e) => {
+            const containerRect = container.getBoundingClientRect();
+            const containerCenterX = containerRect.left + containerRect.width / 2;
+            const containerCenterY = containerRect.top + containerRect.height / 2;
+
+            const mouseX = e.clientX - containerCenterX;
+            const mouseY = e.clientY - containerCenterY;
+
+            // Calculate distance from center
+            const distance = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
+            const maxDistance = 500;
+            const influence = Math.max(0, 1 - distance / maxDistance);
+
+            // Apply very strong 3D tilt to animation with smooth easing
+            const tiltX = (mouseY / containerRect.height) * 60 * influence;
+            const tiltY = (mouseX / containerRect.width) * 60 * influence;
+
+            animationCenter.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            animationCenter.style.transition = 'transform 0.1s ease-out';
+        });
+
+        // Reset on mouse leave
+        document.addEventListener('mouseleave', () => {
+            animationCenter.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
+        });
+    }
+
+    // Handle hero waitlist button click
+    const heroBtn = document.getElementById('hero-waitlist-btn');
+    if (heroBtn) {
+        heroBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const form = document.getElementById('waitlist-form');
+            if (form) {
+                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(() => {
+                    const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
+                    emailInput?.focus();
+                }, 800);
+            }
+        });
+    }
+</script>

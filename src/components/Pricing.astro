@@ -1,0 +1,124 @@
+---
+
+---
+
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-px bg-grid">
+    <!-- Free Trial Plan -->
+    <div class="bg-dark p-8 lg:p-12 flex flex-col justify-between" data-hover>
+        <div class="flex flex-col items-center">
+            <div class="text-left w-full max-w-xs">
+                <h3 class="font-mono text-xs uppercase text-gray-500 mb-6">
+                    Free Trial
+                </h3>
+                <p class="font-mono text-xs text-gray-600 mb-8">
+                    No credit card required
+                </p>
+                <div class="text-2xl font-semibold text-gray-300 mb-8">
+                    14 DAYS FREE
+                </div>
+                <div class="space-y-2 text-sm text-gray-400">
+                    <p>✓ Up to 7 projects</p>
+                    <p>✓ Up to 2 simultaneous timers</p>
+                    <p>✓ Export CSV</p>
+                    <p>✓ 4 Different rate types</p>
+                    <p>✓ Sessions log</p>
+                    <p>✓ 1 Notes tab</p>
+                    <p>✓ Deliverables</p>
+                    <p>✓ Short deliverables stats</p>
+                    <p>✓ Archive</p>
+                    <p>✓ Project Solo mode</p>
+                    <p>✓ 3 Themes</p>
+                    <p>✓ Keyboard shortcuts</p>
+                    <p>✓ Go-to-Projects-Folder button</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12 text-center">
+            <a href="#" class="btn">Start Trial</a>
+        </div>
+    </div>
+
+    <!-- One-Time Purchase Plan -->
+    <div
+        class="bg-light text-dark p-8 lg:p-12 flex flex-col justify-between border-l border-grid"
+        data-hover
+    >
+        <div class="flex flex-col items-center">
+            <div class="text-left w-full max-w-xs">
+                <h3 class="font-mono text-xs uppercase text-gray-700 mb-6">
+                    Purchase
+                </h3>
+                <p class="font-mono text-xs text-gray-600 mb-8">
+                    One-time payment for a lifetime.
+                </p>
+                <div class="text-2xl font-semibold text-dark mb-8">
+                    EARLY-BIRD OFFER
+                </div>
+                <div class="space-y-2 text-sm text-gray-700 mb-8">
+                    <p>✓ All Free features</p>
+                    <p>✓ Unlimited projects</p>
+                    <p>✓ Multiple simultaneous timers</p>
+                    <p>✓ Multiple reorganizable Notes tabs</p>
+                    <p>✓ Backup & Restore</p>
+                    <p>✓ 1 Year of updates</p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-6 text-center">
+            <div class="text-6xl font-semibold text-accent mb-10">$59</div>
+            <a href="#" class="btn-dark">Purchase Tomoro</a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .btn {
+        @apply bg-transparent text-light border border-light px-8 py-4 font-mono text-sm uppercase font-normal transition-all duration-300 relative overflow-hidden;
+        --accent: #00FF81;
+    }
+
+    .btn::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 0%;
+        bottom: 0;
+        left: 0;
+        background-color: var(--accent);
+        transition: height 0.3s;
+        z-index: -1;
+    }
+
+    .btn:hover {
+        @apply border-accent text-accent;
+    }
+
+    .btn:hover::after {
+        height: 100%;
+    }
+
+    .btn-dark {
+        @apply bg-transparent text-dark border border-dark px-8 py-4 font-mono text-sm uppercase font-normal transition-all duration-300 relative overflow-hidden;
+        --accent: #00FF81;
+    }
+
+    .btn-dark::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 0%;
+        bottom: 0;
+        left: 0;
+        background-color: var(--accent);
+        transition: height 0.3s;
+        z-index: -1;
+    }
+
+    .btn-dark:hover {
+        @apply border-accent text-accent;
+    }
+
+    .btn-dark:hover::after {
+        height: 100%;
+    }
+</style>
