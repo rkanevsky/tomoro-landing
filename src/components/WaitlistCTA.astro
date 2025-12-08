@@ -1,74 +1,63 @@
 ---
 const success = Astro.url.searchParams.get("success") === "1";
 ---
-
 <section class="bg-dark border-b border-grid">
-    <div class="p-8 lg:p-16 max-w-2xl mx-auto">
-        <div class="mb-12">
-            <h2 class="font-mono text-xs uppercase text-gray-500 mb-4">
-                Early Access
-            </h2>
-            <h3
-                class="text-4xl lg:text-5xl font-semibold uppercase mb-[32px] whitespace-nowrap"
-            >
-                Be first to try tomoro
-            </h3>
-        </div>
+  <div class="p-8 lg:p-16 max-w-2xl mx-auto">
 
-        {
-            success ? (
-                <div class="text-center mt-6">
-                    <p class="text-lg text-accent font-semibold mb-2">
-                        ✓ You're on the list!
-                    </p>
-                    <p class="text-sm text-gray-400">We'll be in touch soon.</p>
-                </div>
-            ) : (
-                <>
-                    <p class="text-base lg:text-lg text-gray-400 mb-12 leading-relaxed">
-                        Tomoro is a clean, offline workspace for solo
-                        professionals who want clarity instead of clutter. Join
-                        the waitlist to get early builds, updates, and a launch
-                        discount.
-                    </p>
-
-                    <form
-                        method="POST"
-                        action="https://forms.vercel.app/api/submit/tomoro-waitlist"
-                        class="mb-6 flex gap-3"
-                    >
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="your email"
-                            class="flex-1 bg-dark border border-light text-light px-4 py-3 rounded font-mono text-sm"
-                            required
-                        />
-
-                        <input
-                            type="hidden"
-                            name="_redirect"
-                            value="https://tomoro.me/?success=1"
-                        />
-                        <input
-                            type="hidden"
-                            name="_vercel_form"
-                            value="tomoro-waitlist"
-                        />
-
-                        <button
-                            type="submit"
-                            class="font-mono font-bold text-sm px-8 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200"
-                        >
-                            Join Waitlist
-                        </button>
-                    </form>
-
-                    <p class="text-xs text-gray-500 text-center">
-                        No spam. No marketing noise. Just product updates.
-                    </p>
-                </>
-            )
-        }
+    <!-- Header -->
+    <div class="mb-12">
+      <h2 class="font-mono text-xs uppercase text-gray-500 mb-4">Early Access</h2>
+      <h3 class="text-4xl lg:text-5xl font-semibold uppercase mb-[32px] whitespace-nowrap">
+        Be first to try tomoro
+      </h3>
     </div>
+
+    {
+      success ? (
+        <div class="text-center mt-6">
+          <p class="text-lg text-accent font-semibold mb-2">✓ You're on the list!</p>
+          <p class="text-sm text-gray-400">
+            Check your email for updates. We'll be in touch soon.
+          </p>
+        </div>
+      ) : (
+        <>
+          <p class="text-base lg:text-lg text-gray-400 mb-12 leading-relaxed">
+            Tomoro is a clean, offline workspace for solo professionals who want
+            clarity instead of clutter. Join the waitlist to get early builds,
+            updates, and a launch discount.
+          </p>
+
+          <!-- Native HTML form (Vercel Forms will intercept) -->
+          <form
+            method="POST"
+            action="/?success=1"
+            class="mb-6 flex gap-3"
+          >
+            <input
+              type="email"
+              name="email"
+              placeholder="your email"
+              class="flex-1 bg-dark border border-light text-light px-4 py-3 rounded font-mono text-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-accent"
+              required
+            />
+
+            <!-- Required by Vercel Forms -->
+            <input type="hidden" name="_vercel_form" value="tomoro-waitlist" />
+
+            <button
+              type="submit"
+              class="font-mono font-bold text-sm px-8 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 whitespace-nowrap"
+            >
+              Join Waitlist
+            </button>
+          </form>
+
+          <p class="text-xs text-gray-500 text-center">
+            No spam. No marketing noise. Just product updates.
+          </p>
+        </>
+      )
+    }
+  </div>
 </section>
