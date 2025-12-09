@@ -8,12 +8,13 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.87.0",
     "astro": "latest"
   },
   "devDependencies": {
     "@astrojs/tailwind": "latest",
-    "tailwindcss": "latest",
+    "autoprefixer": "latest",
     "postcss": "latest",
-    "autoprefixer": "latest"
+    "tailwindcss": "latest"
   }
 }

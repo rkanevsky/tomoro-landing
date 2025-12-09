@@ -1,92 +1,100 @@
 ---
-const success = Astro.url.searchParams.get("success") === "1";
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL;
+const supabaseKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 ---
+
 <section class="bg-dark border-b border-grid" id="waitlist">
-  <div class="p-8 lg:p-16 max-w-2xl mx-auto">
-
-    <!-- Header -->
-    <div class="mb-12">
-      <h2 class="font-mono text-xs uppercase text-gray-500 mb-4">Early Access</h2>
-      <h3 class="text-4xl lg:text-5xl font-semibold uppercase mb-[32px] whitespace-nowrap">
-        Be first to try tomoro
-      </h3>
-    </div>
-
-    {
-      success ? (
-        <div class="text-center mt-6">
-          <p class="text-lg text-accent font-semibold mb-2">✓ You're on the list!</p>
-          <p class="text-sm text-gray-400">Check your email for updates. We'll be in touch soon.</p>
-        </div>
-      ) : (
-        <>
-          <p class="text-base lg:text-lg text-gray-400 mb-12 leading-relaxed">
-            Tomoro is a clean, offline workspace for solo professionals who want
-            clarity instead of clutter. Join the waitlist to get early builds,
-            updates, and a launch discount.
-          </p>
-
-          <!-- Native Vercel Forms integration -->
-          <form
-            method="POST"
-            action="/"
-            data-vercel-form="tomoro-waitlist"
-            class="mb-6 flex gap-3"
-          >
-            <input
-              type="email"
-              name="email"
-              placeholder="your email"
-              class="flex-1 bg-dark border border-light text-light px-4 py-3 rounded font-mono text-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-accent"
-              required
-            />
-
-            <!-- required for Vercel -->
-            <input type="hidden" name="_vercel_form" value="tomoro-waitlist" />
-
-            <!-- redirect after success -->
-            <input type="hidden" name="_redirect" value="/?success=1#waitlist" />
-
-            <button
-              type="submit"
-              class="font-mono font-bold text-sm px-8 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 whitespace-nowrap"
+    <div class="p-8 lg:p-16 max-w-2xl mx-auto">
+        <!-- Header -->
+        <div class="mb-12">
+            <h2 class="font-mono text-xs uppercase text-gray-500 mb-4">
+                Early Access
+            </h2>
+            <h3
+                class="text-4xl lg:text-5xl font-semibold uppercase mb-[32px] whitespace-nowrap"
             >
-              Join Waitlist
-            </button>
-          </form>
+                Be first to try tomoro
+            </h3>
+        </div>
 
-          <p class="text-xs text-gray-500 text-center">
+        <!-- Success -->
+        <div
+            id="waitlist-success"
+            style="display:none"
+            class="text-center mt-6"
+        >
+            <p class="text-lg text-accent font-semibold mb-2">
+                ✓ You're on the list!
+            </p>
+            <p class="text-sm text-gray-400">
+                Check your email for updates. We'll be in touch soon.
+            </p>
+        </div>
+
+        <!-- Form -->
+        <form
+            id="waitlist-form"
+            class="mb-6 flex gap-3"
+            data-supabase-url={supabaseUrl}
+            data-supabase-key={supabaseKey}
+        >
+            <input
+                type="email"
+                id="waitlist-email"
+                placeholder="your email"
+                class="flex-1 bg-dark border border-light text-light px-4 py-3 rounded font-mono text-sm placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-accent"
+                required
+            />
+            <button
+                type="submit"
+                class="font-mono font-bold text-sm px-8 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 whitespace-nowrap"
+            >
+                Join Waitlist
+            </button>
+        </form>
+
+        <p class="text-xs text-gray-500 text-center">
             No spam. No marketing noise. Just product updates.
-          </p>
-        </>
-      )
-    }
-  </div>
+        </p>
+    </div>
 </section>
 
-<script>
-  (function () {
-    try {
-      var params = new URLSearchParams(window.location.search);
-      var success = params.get("success") === "1";
+<script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-      var form = document.getElementById("waitlist-form");
-      var successBox = document.getElementById("success-message");
+    const form = document.getElementById("waitlist-form");
+    const emailInput = document.getElementById("waitlist-email");
+    const successBox = document.getElementById("waitlist-success");
+    const submitBtn = form.querySelector("button");
 
-      if (success) {
-        const form = document.querySelector("form[data-vercel-form]");
-        const successMsg = document.getElementById("success-message");
+    const url = form.dataset.supabaseUrl;
+    const key = form.dataset.supabaseKey;
+    const supabase = createClient(url, key);
 
-        if (form && successMsg) {
-          form.style.display = "none";
-          successMsg.style.display = "block";
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = emailInput.value.trim();
+        if (!email) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Joining...";
+
+        const { error } = await supabase.from("waitlist").insert([{ email }]);
+
+        if (error) {
+            console.error(error);
+            alert("Something went wrong. Please try again.");
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Join Waitlist";
+            return;
         }
 
-        // remove query params but keep anchor
-        window.history.replaceState({}, "", "/#waitlist");
-      }
-    } catch (e) {
-      console.error("Error handling waitlist success:", e);
-    }
-  })();
+        form.style.display = "none";
+        successBox.style.display = "block";
+    });
 </script>
