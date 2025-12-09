@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Geist';
-  src: url('/fonts/Geist.ttf') format('truetype');
+    font-family: "Geist";
+    src: url("/fonts/Geist.ttf") format("truetype");
 }
 
 @tailwind base;
@@ -8,40 +8,72 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+    html {
+        scroll-behavior: smooth;
+    }
 
-  body {
-    @apply bg-dark text-light;
-  }
+    body {
+        @apply bg-dark text-light;
+    }
 
-  h1 {
-    @apply text-5xl lg:text-7xl font-light uppercase;
-  }
+    h1 {
+        @apply text-5xl lg:text-7xl font-light uppercase;
+    }
 
-  h2 {
-    @apply font-mono text-sm uppercase tracking-widest text-gray-500;
-  }
+    h2 {
+        @apply font-mono text-sm uppercase tracking-widest text-gray-500;
+    }
 
-  p {
-    @apply text-base lg:text-lg leading-relaxed;
-  }
+    p {
+        @apply text-base lg:text-lg leading-relaxed;
+    }
 }
 
 @layer components {
-  .box {
-    @apply bg-dark p-8;
-  }
+    .box {
+        @apply bg-dark p-8;
+    }
 
-  .btn {
-    @apply relative overflow-hidden;
-  }
+    .btn {
+        @apply relative overflow-hidden;
+    }
 }
 
 /* Smooth transitions */
 * {
-  transition-property: background-color, border-color, color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+@keyframes fade-up-soft {
+    0% {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(6px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-up {
+    opacity: 0;
+    animation: fade-up-soft 0.8s ease-out forwards;
+}
+
+.fade-up-delay-1 {
+    opacity: 0;
+    animation: fade-up-soft 0.9s ease-out forwards;
+    animation-delay: 0.12s;
+}
+
+.fade-up-delay-2 {
+    opacity: 0;
+    animation: fade-up-soft 1s ease-out forwards;
+    animation-delay: 0.24s;
 }

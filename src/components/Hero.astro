@@ -1,111 +1,108 @@
 ---
-
+/* Astro frontmatter – если вам тут ничего не нужно, можно оставить пустым */
 ---
 
-<section class="bg-dark border-b border-grid">
-    <!-- Hero Content -->
-    <div
-        class="max-w-7xl mx-auto bg-dark p-8 lg:p-16 flex flex-col justify-between min-h-[60vh]"
-    >
-        <div class="text-center">
-            <h2
-                class="font-mono text-xs uppercase letter-spacing text-gray-500 mb-4"
-            >
-                What is all about
-            </h2>
-            <h1
-                class="uppercase font-semibold inline-block"
-                style="font-size: 64px; line-height: 1.05; margin-bottom: 12px;"
-            >
-                Your work<br />deserves better<br />than a spreadsheet<span
-                    class="text-accent">.</span
-                >
-            </h1>
-        </div>
-        <div class="flex flex-col items-center">
-            <div style="height: 12px;"></div>
-            <p class="text-lg text-gray-400 max-w-lg leading-relaxed mb-8 text-left">
-                A private, offline environment crafted for solo professionals who
-                value simplicity. Track your projects, your clients, and your
-                earnings in a minimal interface that avoids cloud storage, and
-                avoids everything that pulls you out of focus — so your work stays
-                yours, and your attention stays uninterrupted.
-            </p>
-            <div class="text-center">
-                <button
-                    id="hero-waitlist-btn"
-                    class="font-mono font-bold text-sm px-6 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 bg-transparent cursor-pointer"
-                    style="box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.15);"
-                >
-                    JOIN WAITLIST
-                </button>
-                <p class="font-mono text-xs text-gray-500 mt-3">
-                    No spam. Early access only.
-                </p>
-            </div>
-        </div>
-    </div>
-
-</section>
-
 <style>
-    @keyframes rotate-sphere {
+    /* Fade-up animation (Premium Apple / Linear style) */
+    @keyframes fade-up-soft {
         0% {
-            transform: rotate3d(1, 1, 1, 0deg);
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        60% {
+            opacity: 1;
+            transform: translateY(6px);
         }
         100% {
-            transform: rotate3d(1, 1, 1, 360deg);
+            opacity: 1;
+            transform: translateY(0);
         }
     }
 
-    .animate-rotate-sphere {
-        animation: rotate-sphere 10s linear infinite;
+    .fade-up {
+        opacity: 0;
+        animation: fade-up-soft 0.8s ease-out forwards;
+    }
+
+    .fade-up-delay-1 {
+        opacity: 0;
+        animation: fade-up-soft 0.9s ease-out forwards;
+        animation-delay: 0.12s;
+    }
+
+    .fade-up-delay-2 {
+        opacity: 0;
+        animation: fade-up-soft 1s ease-out forwards;
+        animation-delay: 0.24s;
     }
 </style>
 
+<section class="bg-dark border-b border-grid">
+    <div
+        class="max-w-5xl mx-auto px-8 lg:px-16 py-24 lg:py-32 flex flex-col items-center gap-20"
+    >
+        <!-- Heading block -->
+        <div class="flex flex-col items-center text-center gap-6">
+            <!-- Subheading -->
+            <p
+                class="font-mono text-[11px] tracking-widest uppercase text-gray-500 fade-up"
+            >
+                Early Access
+            </p>
+
+            <!-- Main heading -->
+            <h1
+                class="uppercase font-semibold text-[42px] sm:text-[52px] lg:text-[64px] leading-[1.05] fade-up-delay-1"
+            >
+                A desktop tool
+                <br />
+                for solo professionals<span class="text-accent">.</span>
+            </h1>
+
+            <!-- Supporting text -->
+            <p
+                class="text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed fade-up-delay-2"
+            >
+                A minimal, private, distraction-free space to manage your
+                projects, clients, and earnings — with full control over your
+                work and your attention.
+            </p>
+        </div>
+
+        <!-- CTA block -->
+        <div class="flex flex-col items-center gap-4 fade-up-delay-2">
+            <button
+                id="hero-waitlist-btn"
+                class="font-mono font-bold text-sm px-7 py-3 border border-light text-light rounded hover:bg-light hover:text-dark transition-all duration-200 bg-transparent cursor-pointer"
+                style="box-shadow: 0 0 20px rgba(255,255,255,0.25), 0 0 40px rgba(255,255,255,0.12);"
+            >
+                Join the waitlist
+            </button>
+
+            <p class="font-mono text-xs text-gray-500">
+                No spam. Early access only.
+            </p>
+        </div>
+    </div>
+</section>
+
 <script>
-    const container = document.getElementById('animation-container');
-    const animationCenter = document.getElementById('animation-center');
+    // --- Smooth scroll to waitlist form (fixed version) ---
+    const heroBtn = document.getElementById("hero-waitlist-btn");
 
-    if (container && animationCenter) {
-        document.addEventListener('mousemove', (e) => {
-            const containerRect = container.getBoundingClientRect();
-            const containerCenterX = containerRect.left + containerRect.width / 2;
-            const containerCenterY = containerRect.top + containerRect.height / 2;
-
-            const mouseX = e.clientX - containerCenterX;
-            const mouseY = e.clientY - containerCenterY;
-
-            // Calculate distance from center
-            const distance = Math.sqrt(mouseX * mouseX + mouseY * mouseY);
-            const maxDistance = 500;
-            const influence = Math.max(0, 1 - distance / maxDistance);
-
-            // Apply very strong 3D tilt to animation with smooth easing
-            const tiltX = (mouseY / containerRect.height) * 60 * influence;
-            const tiltY = (mouseX / containerRect.width) * 60 * influence;
-
-            animationCenter.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-            animationCenter.style.transition = 'transform 0.1s ease-out';
-        });
-
-        // Reset on mouse leave
-        document.addEventListener('mouseleave', () => {
-            animationCenter.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
-        });
-    }
-
-    // Handle hero waitlist button click
-    const heroBtn = document.getElementById('hero-waitlist-btn');
     if (heroBtn) {
-        heroBtn.addEventListener('click', (e) => {
+        heroBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            const form = document.getElementById('waitlist-form');
+
+            const form = document.getElementById("waitlist-form");
             if (form) {
-                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                form.scrollIntoView({ behavior: "smooth", block: "start" });
+
                 setTimeout(() => {
-                    const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement;
-                    emailInput?.focus();
+                    const emailInput = form.querySelector(
+                        'input[type="email"]',
+                    );
+                    if (emailInput) emailInput.focus();
                 }, 800);
             }
         });
