@@ -1,7 +1,7 @@
 ---
 const success = Astro.url.searchParams.get("success") === "1";
 ---
-<section class="bg-dark border-b border-grid">
+<section class="bg-dark border-b border-grid" id="waitlist">
   <div class="p-8 lg:p-16 max-w-2xl mx-auto">
 
     <!-- Header -->
@@ -26,10 +26,11 @@ const success = Astro.url.searchParams.get("success") === "1";
             updates, and a launch discount.
           </p>
 
-          <!-- Form POST → our own API endpoint -->
+          <!-- Native Vercel Forms integration -->
           <form
             method="POST"
-            action="/api/waitlist"
+            action="/"
+            data-vercel-form="tomoro-waitlist"
             class="mb-6 flex gap-3"
           >
             <input
@@ -40,8 +41,11 @@ const success = Astro.url.searchParams.get("success") === "1";
               required
             />
 
-            <!-- Vercel Forms identifier -->
+            <!-- required for Vercel -->
             <input type="hidden" name="_vercel_form" value="tomoro-waitlist" />
+
+            <!-- redirect after success -->
+            <input type="hidden" name="_redirect" value="/?success=1#waitlist" />
 
             <button
               type="submit"
@@ -59,3 +63,30 @@ const success = Astro.url.searchParams.get("success") === "1";
     }
   </div>
 </section>
+
+<script>
+  (function () {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var success = params.get("success") === "1";
+
+      var form = document.getElementById("waitlist-form");
+      var successBox = document.getElementById("success-message");
+
+      if (success) {
+        const form = document.querySelector("form[data-vercel-form]");
+        const successMsg = document.getElementById("success-message");
+
+        if (form && successMsg) {
+          form.style.display = "none";
+          successMsg.style.display = "block";
+        }
+
+        // remove query params but keep anchor
+        window.history.replaceState({}, "", "/#waitlist");
+      }
+    } catch (e) {
+      console.error("Error handling waitlist success:", e);
+    }
+  })();
+</script>
