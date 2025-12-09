@@ -1,22 +1,35 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Marquee from '../components/Marquee.astro';
-import AppScreenshot from '../components/AppScreenshot.astro';
-import Features from '../components/Features.astro';
-import FeaturesList from '../components/FeaturesList.astro';
-import WaitlistCTA from '../components/WaitlistCTA.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Marquee from "../components/Marquee.astro";
+import AppScreenshot from "../components/AppScreenshot.astro";
+import Features from "../components/Features.astro";
+import FeaturesList from "../components/FeaturesList.astro";
+import WaitlistCTA from "../components/WaitlistCTA.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="Tomoro | The Quiet Workspace">
-  <Header />
-  <Hero />
-  <Marquee />
-  <AppScreenshot />
-  <Features />
-  <FeaturesList />
-  <WaitlistCTA />
-  <Footer />
+    <Header />
+    <Hero />
+    <Marquee />
+    <AppScreenshot />
+    <Features />
+    <FeaturesList />
+    <WaitlistCTA />
+    <Footer />
+
+    <!-- 🔒 SEO: Hidden semantic block for Google (not visible to users) -->
+    <div
+        style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"
+    >
+        Tomoro is an offline time and project tracking tool for Mac and Windows.
+        It helps freelancers and solo professionals track time, projects,
+        clients, and earnings without the cloud, without accounts, and without
+        subscriptions. Tomoro provides a clean, private, distraction-free
+        desktop workspace where all data stays on your device. Designed for
+        developers, designers, creators, consultants, and anyone who needs a
+        simple and reliable way to manage work.
+    </div>
 </Layout>

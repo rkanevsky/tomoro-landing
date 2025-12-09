@@ -1,8 +1,8 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
-  title: string;
+    title: string;
 }
 
 const { title } = Astro.props;
@@ -10,62 +10,143 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-  </head>
-  <body class="bg-dark text-light font-sans overflow-x-hidden pt-20">
-    <!-- Noise overlay -->
-    <div class="fixed inset-0 pointer-events-none z-50 opacity-5 mix-blend-multiply" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`}}>
-    </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Custom cursor -->
-    <div id="cursor" class="fixed w-5 h-5 border border-light rounded-full pointer-events-none z-9999 mix-blend-difference" style="transform: translate(-50%, -50%);"></div>
+        <!-- Title -->
+        <title>
+            Tomoro — Offline Time & Project Tracking for Mac & Windows
+        </title>
 
-    <slot />
+        <!-- Description -->
+        <meta
+            name="description"
+            content="Tomoro is a minimal, private, offline desktop tool for Mac and Windows. Track time, projects, clients, and earnings without cloud, accounts, or subscriptions."
+        />
 
-    <style>
-      :root {
-        --z-9999: 9999;
-      }
+        <!-- Canonical -->
+        <link rel="canonical" href="https://tomoro.me/" />
 
-      .z-9999 {
-        z-index: 9999;
-      }
-    </style>
+        <!-- OpenGraph -->
+        <meta
+            property="og:title"
+            content="Tomoro — Offline Time & Project Tracking for Mac & Windows"
+        />
+        <meta
+            property="og:description"
+            content="A minimal offline workspace for tracking time, projects, clients, and earnings on Mac and Windows. No cloud. No logins. No subscriptions."
+        />
+        <meta property="og:url" content="https://tomoro.me/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://tomoro.me/og.png" />
 
-    <script>
-      const cursor = document.getElementById('cursor');
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+            name="twitter:title"
+            content="Tomoro — Offline Time & Project Tracking for Mac & Windows"
+        />
+        <meta
+            name="twitter:description"
+            content="Track time, projects, clients, and earnings in a clean offline workspace. Works on Mac and Windows. No cloud. No subscriptions."
+        />
+        <meta name="twitter:image" content="https://tomoro.me/og.png" />
 
-      if (cursor) {
-        document.addEventListener('mousemove', (e) => {
-          cursor.style.left = e.clientX + 'px';
-          cursor.style.top = e.clientY + 'px';
-        });
+        <!-- Robots -->
+        <meta name="robots" content="index, follow" />
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Tomoro",
+                "description": "Minimal offline time and project tracking tool for Mac and Windows. Track time, projects, clients, and earnings without cloud or subscriptions.",
+                "operatingSystem": "macOS, Windows",
+                "applicationCategory": "ProductivityApplication",
+                "offers": {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/PreOrder"
+                },
+                "url": "https://tomoro.me",
+                "image": "https://tomoro.me/og.png",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Tomoro"
+                }
+            }
+        </script>
+    </head>
 
-        const hoverElements = document.querySelectorAll('[data-hover], a, button');
+    <body class="bg-dark text-light font-sans overflow-x-hidden pt-20">
+        <!-- Noise overlay -->
+        <div
+            class="fixed inset-0 pointer-events-none z-50 opacity-5 mix-blend-multiply"
+            style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
+        >
+        </div>
 
-        hoverElements.forEach(el => {
-          el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-          el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
-        });
-      }
-    </script>
+        <!-- Custom cursor -->
+        <div
+            id="cursor"
+            class="fixed w-5 h-5 border border-light rounded-full pointer-events-none z-9999 mix-blend-difference"
+            style="transform: translate(-50%, -50%);"
+        >
+        </div>
 
-    <style is:global>
-      * {
-        cursor: none;
-      }
+        <slot />
 
-      #cursor {
-        opacity: 1;
-        transition: width 0.2s, height 0.2s, background-color 0.2s;
-      }
+        <style>
+            :root {
+                --z-9999: 9999;
+            }
 
-      #cursor.hovered {
-        @apply w-12 h-12 bg-light border-none;
-      }
-    </style>
-  </body>
+            .z-9999 {
+                z-index: 9999;
+            }
+        </style>
+
+        <script>
+            const cursor = document.getElementById("cursor");
+
+            if (cursor) {
+                document.addEventListener("mousemove", (e) => {
+                    cursor.style.left = e.clientX + "px";
+                    cursor.style.top = e.clientY + "px";
+                });
+
+                const hoverElements = document.querySelectorAll(
+                    "[data-hover], a, button",
+                );
+
+                hoverElements.forEach((el) => {
+                    el.addEventListener("mouseenter", () =>
+                        cursor.classList.add("hovered"),
+                    );
+                    el.addEventListener("mouseleave", () =>
+                        cursor.classList.remove("hovered"),
+                    );
+                });
+            }
+        </script>
+
+        <style is:global>
+            * {
+                cursor: none;
+            }
+
+            #cursor {
+                opacity: 1;
+                transition:
+                    width 0.2s,
+                    height 0.2s,
+                    background-color 0.2s;
+            }
+
+            #cursor.hovered {
+                @apply w-12 h-12 bg-light border-none;
+            }
+        </style>
+    </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-/* Astro frontmatter – если вам тут ничего не нужно, можно оставить пустым */
+/* No frontmatter needed */
 ---
 
 <style>
@@ -50,23 +50,23 @@
                 Early Access
             </p>
 
-            <!-- Main heading -->
+            <!-- Main heading (H1) -->
             <h1
-                class="uppercase font-semibold text-[42px] sm:text-[52px] lg:text-[64px] leading-[1.05] fade-up-delay-1"
+                class="uppercase font-semibold text-[42px] sm:text-[52px] lg:text-[64px] leading-[1.05] fade-up-delay-1 font-sans"
             >
                 A desktop tool
                 <br />
                 for solo professionals<span class="text-accent">.</span>
             </h1>
 
-            <!-- Supporting text -->
-            <p
-                class="text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed fade-up-delay-2"
+            <!-- Supporting text (H2 but visually a paragraph) -->
+            <h2
+                class="font-sans font-normal normal-case tracking-normal text-base sm:text-lg text-gray-400 max-w-xl leading-relaxed fade-up-delay-2 m-0"
             >
                 A minimal, private, distraction-free space to manage your
                 projects, clients, and earnings — with full control over your
                 work and your attention.
-            </p>
+            </h2>
         </div>
 
         <!-- CTA block -->
@@ -87,7 +87,7 @@
 </section>
 
 <script>
-    // --- Smooth scroll to waitlist form (fixed version) ---
+    // Smooth scroll to waitlist form
     const heroBtn = document.getElementById("hero-waitlist-btn");
 
     if (heroBtn) {
