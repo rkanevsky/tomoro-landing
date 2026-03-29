@@ -1,0 +1,13 @@
+<section class="px-6 lg:px-12 py-[100px] max-w-[960px] mx-auto text-center">
+  <div class="text-xs uppercase tracking-[3px] text-[var(--accent)] font-semibold mb-3.5">Privacy</div>
+  <h2 class="text-[32px] lg:text-[40px] font-bold tracking-[-1.5px] mb-4 leading-[1.15] text-[var(--text)]">Your data stays on your machine.</h2>
+  <p class="text-base text-[var(--text-secondary)] leading-relaxed max-w-[520px] mx-auto mb-10">Tomoro runs entirely on your computer. No accounts, no cloud, no tracking. Your projects and hours never leave your desk.</p>
+
+  <div class="flex flex-wrap justify-center gap-3">
+    {['No account required', 'No telemetry', 'No cloud sync', 'Works fully offline'].map(pill => (
+      <div class="flex items-center gap-2 px-5 py-2.5 bg-[var(--bg-card)] border border-[var(--border)] rounded-full text-sm text-[var(--text)] font-medium transition-all duration-200 hover:border-[var(--text-muted)]">
+        <div class="w-[7px] h-[7px] rounded-full bg-[#2aca44] shrink-0"></div> {pill}
+      </div>
+    ))}
+  </div>
+</section>
