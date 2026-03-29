@@ -1,0 +1,22 @@
+<button
+  id="theme-toggle"
+  class="bg-transparent border border-[var(--border)] rounded-lg w-9 h-9 flex items-center justify-center cursor-pointer text-[var(--text-secondary)] text-base transition-all duration-200 shrink-0 hover:border-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--bg-card)]"
+  title="Toggle dark mode"
+>
+  <span class="moon dark:hidden">&#9789;</span>
+  <span class="sun hidden dark:block">&#9728;</span>
+</button>
+
+<script>
+  const btn = document.getElementById('theme-toggle');
+  btn?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('tomoro-theme', isDark ? 'dark' : 'light');
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('tomoro-theme')) {
+      document.documentElement.classList.toggle('dark', e.matches);
+    }
+  });
+</script>
