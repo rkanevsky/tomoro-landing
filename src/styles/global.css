@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-bg-card: var(--bg-card);
+  --color-text: var(--text);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-border: var(--border);
+  --color-white: var(--white);
+  --color-green: #2aca44;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --bg: #fffbf5;
+  --bg-card: #f5efe8;
+  --text: #2d2a26;
+  --text-secondary: #7a7168;
+  --text-muted: #b8a99a;
+  --accent: #e06830;
+  --accent-hover: #c85a28;
+  --accent-soft: rgba(224, 104, 48, 0.08);
+  --border: #e8e0d5;
+  --white: #ffffff;
+  --green: #2aca44;
+}
+
+html.dark {
+  --bg: #1a1816;
+  --bg-card: #242120;
+  --text: #e8e0d5;
+  --text-secondary: #a69d94;
+  --text-muted: #6b6158;
+  --accent: #e06830;
+  --accent-hover: #f07040;
+  --accent-soft: rgba(224, 104, 48, 0.12);
+  --border: #332e2a;
+  --white: #1f1c1a;
+  --green: #2aca44;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Subtle grid texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(128, 120, 110, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(128, 120, 110, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fade-up animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.2s; }
+.fade-up-3 { animation-delay: 0.3s; }
+.fade-up-4 { animation-delay: 0.4s; }
+
+html {
+  scroll-behavior: smooth;
+}
