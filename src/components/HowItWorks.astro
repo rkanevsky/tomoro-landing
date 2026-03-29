@@ -1,0 +1,21 @@
+<section class="px-6 lg:px-12 py-[100px] max-w-[960px] mx-auto">
+  <div class="text-xs uppercase tracking-[3px] text-[var(--accent)] font-semibold mb-3.5">How it works</div>
+  <h2 class="text-[32px] lg:text-[40px] font-bold tracking-[-1.5px] mb-14 leading-[1.15] text-[var(--text)]">Three steps. That's it.</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 relative">
+    <!-- Connecting line (desktop only) -->
+    <div class="hidden lg:block absolute top-7 left-[calc(16.67%+24px)] right-[calc(16.67%+24px)] h-0.5 opacity-30" style="background: linear-gradient(90deg, var(--accent), var(--border), var(--accent));"></div>
+
+    {[
+      { num: '1', title: 'Organize', desc: 'Create projects, set your rates, link to your working folders. Get your desk in order.' },
+      { num: '2', title: 'Log', desc: 'Track time with a timer or enter hours manually. Add notes. Work the way you work.' },
+      { num: '3', title: 'Bill', desc: 'Export your logged hours as CSV. Attach to invoices. Get paid for the work you did.' },
+    ].map(s => (
+      <div class="text-center relative">
+        <div class="w-14 h-14 rounded-full bg-[var(--accent)] text-white text-[22px] font-bold flex items-center justify-center mx-auto mb-5 shadow-[0_4px_16px_rgba(224,104,48,0.2)] relative z-10">{s.num}</div>
+        <h3 class="text-xl font-semibold mb-2.5 tracking-[-0.3px]">{s.title}</h3>
+        <p class="text-[14.5px] text-[var(--text-secondary)] leading-relaxed">{s.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
