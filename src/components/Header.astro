@@ -3,12 +3,12 @@ import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header class="sticky top-0 z-50 border-b border-[color-mix(in_srgb,var(--border)_60%,transparent)] px-6 lg:px-12 py-3.5 flex justify-between items-center transition-colors duration-300" style="background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%);">
-  <div class="text-[22px] font-extrabold text-[var(--text)] tracking-tight">tomoro</div>
+  <a href="/" class="text-[22px] font-extrabold text-[var(--text)] tracking-tight no-underline">tomoro</a>
   <nav class="flex items-center gap-8">
-    <a href="#features" class="hidden lg:inline text-sm text-[var(--text-secondary)] font-medium no-underline hover:text-[var(--text)] transition-colors">Features</a>
-    <a href="#pricing" class="hidden lg:inline text-sm text-[var(--text-secondary)] font-medium no-underline hover:text-[var(--text)] transition-colors">Pricing</a>
+    <a href="/#features" class="hidden lg:inline text-sm text-[var(--text-secondary)] font-medium no-underline hover:text-[var(--text)] transition-colors">Features</a>
+    <a href="/#pricing" class="hidden lg:inline text-sm text-[var(--text-secondary)] font-medium no-underline hover:text-[var(--text)] transition-colors">Pricing</a>
     <a href="/download" class="hidden lg:inline text-sm text-[var(--text-secondary)] font-medium no-underline hover:text-[var(--text)] transition-colors">Download</a>
     <ThemeToggle />
-    <a href="#pricing" class="bg-[var(--accent)] text-white px-5 py-2 rounded-[9px] text-[13px] font-semibold no-underline transition-all duration-200 shadow-[0_2px_8px_rgba(224,104,48,0.2)] hover:bg-[var(--accent-hover)] hover:shadow-[0_4px_16px_rgba(224,104,48,0.3)] hover:-translate-y-px">Buy — $49</a>
+    <a href="/#pricing" class="bg-[var(--accent)] text-white px-5 py-2 rounded-[9px] text-[13px] font-semibold no-underline transition-all duration-200 shadow-[0_2px_8px_rgba(224,104,48,0.2)] hover:bg-[var(--accent-hover)] hover:shadow-[0_4px_16px_rgba(224,104,48,0.3)] hover:-translate-y-px">Buy — $49</a>
   </nav>
 </header>
