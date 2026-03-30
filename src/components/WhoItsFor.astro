@@ -1,17 +1,25 @@
+---
+import { Code, Pen, Headphones, Briefcase } from 'lucide-astro';
+
+const personas = [
+  { Icon: Code, title: 'Developers', desc: 'Organize client projects, log hours at the end of the day, link to your repo folder.' },
+  { Icon: Pen, title: 'Designers', desc: 'Track projects by client, set hourly or fixed-price rates, export clean billing data.' },
+  { Icon: Headphones, title: 'Audio Engineers', desc: 'Log sessions, jump to your project folder, keep notes alongside your hours.' },
+  { Icon: Briefcase, title: 'Consultants', desc: 'Different rates per client. Export CSVs for your invoices. Know your monthly earnings.' },
+];
+---
+
 <section class="px-6 lg:px-12 py-[100px] max-w-[960px] mx-auto">
   <div class="text-xs uppercase tracking-[3px] text-[var(--accent)] font-semibold mb-3.5">Who it's for</div>
   <h2 class="text-[32px] lg:text-[40px] font-bold tracking-[-1.5px] mb-14 leading-[1.15] text-[var(--text)]">You work alone. Your tools<br>shouldn't feel like enterprise software.</h2>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-    {[
-      { icon: '⟨/⟩', title: 'Developers', desc: 'Organize client projects, log hours at the end of the day, link to your repo folder.' },
-      { icon: '◊', title: 'Designers', desc: 'Track projects by client, set hourly or fixed-price rates, export clean billing data.' },
-      { icon: '♪', title: 'Audio Engineers', desc: 'Log sessions, jump to your project folder, keep notes alongside your hours.' },
-      { icon: '✉', title: 'Consultants', desc: 'Different rates per client. Export CSVs for your invoices. Know your monthly earnings.' },
-    ].map(p => (
+    {personas.map(p => (
       <div class="group relative bg-[var(--bg-card)] rounded-[14px] p-[30px_24px] border border-[var(--border)] transition-all duration-300 overflow-hidden hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(45,42,38,0.06)] dark:hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)] hover:border-[color-mix(in_srgb,var(--accent)_30%,transparent)]">
         <div class="absolute top-0 left-0 right-0 h-[3px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div class="w-12 h-12 rounded-xl bg-[var(--accent-soft)] flex items-center justify-center text-[22px] mb-[18px] text-[var(--accent)]" set:html={p.icon}></div>
+        <div class="w-12 h-12 rounded-xl bg-[var(--accent-soft)] flex items-center justify-center mb-[18px] text-[var(--accent)]">
+          <p.Icon size={22} strokeWidth={1.75} />
+        </div>
         <h3 class="text-base font-semibold mb-2 tracking-[-0.3px]">{p.title}</h3>
         <p class="text-[13.5px] text-[var(--text-secondary)] leading-[1.55]">{p.desc}</p>
       </div>

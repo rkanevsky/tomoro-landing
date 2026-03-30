@@ -1,21 +1,29 @@
+---
+import { FolderOpen, Clock, DollarSign, WifiOff, FileSpreadsheet, DatabaseBackup, StickyNote, Layers, AppWindow } from 'lucide-astro';
+
+const features = [
+  { Icon: FolderOpen, title: 'Project Folders', desc: 'Link each project to a folder on your machine. One click to open it. Your projects and your files, connected.' },
+  { Icon: Clock, title: 'Flexible Time Logging', desc: 'Use timers if you want, or log hours manually at the end of the day. Your workflow, your choice.' },
+  { Icon: DollarSign, title: 'Flexible Rates', desc: 'Hourly, daily, fixed price, or per-item. Set the billing model that fits each project.' },
+  { Icon: WifiOff, title: 'Offline & Local', desc: 'Works without internet. Your data never leaves your machine. No accounts, no cloud, no telemetry.' },
+  { Icon: FileSpreadsheet, title: 'CSV Export', desc: 'Export clean data for invoicing. Open in Excel, Numbers, or paste into your invoice tool.' },
+  { Icon: DatabaseBackup, title: 'Backup & Restore', desc: 'Automatic backups on close. Restore anytime. Your data is always safe.' },
+  { Icon: StickyNote, title: 'Project Notes', desc: 'Add notes to each project. Keep context alongside your work without switching apps.' },
+  { Icon: Layers, title: 'Unlimited Projects', desc: 'Each with their own rate, folder, notes, and time entries. No artificial limits.' },
+  { Icon: AppWindow, title: 'System Tray', desc: "Runs quietly in your system tray. Always there when you need it, out of the way when you don't." },
+];
+---
+
 <section id="features" class="px-6 lg:px-12 py-[100px] max-w-[960px] mx-auto">
   <div class="text-xs uppercase tracking-[3px] text-[var(--accent)] font-semibold mb-3.5">Features</div>
   <h2 class="text-[32px] lg:text-[40px] font-bold tracking-[-1.5px] mb-14 leading-[1.15] text-[var(--text)]">Everything you need.<br>Nothing you don't.</h2>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-    {[
-      { icon: '↗', title: 'Project Folders', desc: 'Link each project to a folder on your machine. One click to open it. Your projects and your files, connected.' },
-      { icon: '◷', title: 'Flexible Time Logging', desc: 'Use timers if you want, or log hours manually at the end of the day. Your workflow, your choice.' },
-      { icon: '$', title: 'Flexible Rates', desc: 'Hourly, daily, fixed price, or per-item. Set the billing model that fits each project.' },
-      { icon: '⬡', title: 'Offline & Local', desc: 'Works without internet. Your data never leaves your machine. No accounts, no cloud, no telemetry.' },
-      { icon: '↓', title: 'CSV Export', desc: 'Export clean data for invoicing. Open in Excel, Numbers, or paste into your invoice tool.' },
-      { icon: '⟳', title: 'Backup & Restore', desc: 'Automatic backups on close. Restore anytime. Your data is always safe.' },
-      { icon: '¶', title: 'Project Notes', desc: 'Add notes to each project. Keep context alongside your work without switching apps.' },
-      { icon: '∞', title: 'Unlimited Projects', desc: 'Each with their own rate, folder, notes, and time entries. No artificial limits.' },
-      { icon: '◉', title: 'System Tray', desc: "Runs quietly in your system tray. Always there when you need it, out of the way when you don't." },
-    ].map(f => (
+    {features.map(f => (
       <div class="bg-[var(--bg-card)] rounded-[14px] p-[30px_24px] border border-[var(--border)] transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_8px_24px_rgba(45,42,38,0.05)] dark:hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
-        <div class="w-11 h-11 rounded-[11px] bg-[var(--accent-soft)] mb-[18px] flex items-center justify-center text-xl">{f.icon}</div>
+        <div class="w-11 h-11 rounded-[11px] bg-[var(--accent-soft)] mb-[18px] flex items-center justify-center text-[var(--accent)]">
+          <f.Icon size={20} strokeWidth={1.75} />
+        </div>
         <h3 class="text-base font-semibold mb-2 tracking-[-0.3px]">{f.title}</h3>
         <p class="text-[13.5px] text-[var(--text-secondary)] leading-[1.55]">{f.desc}</p>
       </div>
