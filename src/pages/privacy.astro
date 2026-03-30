@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Privacy Policy — Tomoro"
+  description="Privacy Policy for Tomoro. Your data stays on your machine — no cloud, no tracking, no telemetry."
+>
+  <Header />
+
+  <main class="px-6 lg:px-12 py-[100px] max-w-[700px] mx-auto">
+    <div class="text-xs uppercase tracking-[3px] text-[var(--accent)] font-semibold mb-3.5">Legal</div>
+    <h1 class="text-[32px] lg:text-[40px] font-bold tracking-[-1.5px] mb-3 leading-[1.15] text-[var(--text)]">Privacy Policy</h1>
+    <p class="text-[14px] text-[var(--text-muted)] mb-14">Last updated: March 30, 2026</p>
+
+    <div class="space-y-10 text-[16px] text-[var(--text-secondary)] leading-[1.75]">
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Overview</h2>
+        <p>Tomoro is a local-only desktop application. Your data stays on your machine. We don't collect personal information, usage data, or analytics of any kind.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">What We Don't Collect</h2>
+        <p>Tomoro does not collect, store, or transmit:</p>
+        <ul class="list-disc pl-6 mt-3 space-y-1.5">
+          <li>Personal information or user accounts</li>
+          <li>Usage analytics or telemetry</li>
+          <li>Project data, time entries, or settings</li>
+          <li>Crash reports or diagnostics</li>
+          <li>Cookies or tracking identifiers</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Network Requests</h2>
+        <p>Tomoro makes one type of network request: license validation. When you activate, validate, or deactivate a license, the app contacts the Lemon Squeezy API through a proxy at <code class="text-[14px] bg-[var(--bg-card)] px-1.5 py-0.5 rounded">tomoro.me/api/ls</code>. This request includes only:</p>
+        <ul class="list-disc pl-6 mt-3 space-y-1.5">
+          <li>Your license key</li>
+          <li>A device instance identifier (randomly generated, not tied to your identity)</li>
+        </ul>
+        <p class="mt-3">No personal data, project data, or usage information is included in these requests.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Data Storage</h2>
+        <p>All your data — projects, time entries, rates, and settings — is stored locally on your device:</p>
+        <ul class="list-disc pl-6 mt-3 space-y-1.5">
+          <li><strong>macOS:</strong> <code class="text-[14px] bg-[var(--bg-card)] px-1.5 py-0.5 rounded">~/Library/Application Support/Tomoro</code></li>
+          <li><strong>Windows:</strong> <code class="text-[14px] bg-[var(--bg-card)] px-1.5 py-0.5 rounded">%APPDATA%/Tomoro</code></li>
+        </ul>
+        <p class="mt-3">This data is never transmitted to any server. Deleting the app or its data folder permanently removes all your data from the device.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Lemon Squeezy</h2>
+        <p>If you purchase a license, the transaction is handled by <a href="https://www.lemonsqueezy.com" target="_blank" rel="noopener noreferrer" class="text-[var(--accent)] hover:underline">Lemon Squeezy</a> as the merchant of record. Lemon Squeezy collects your email and payment information to process the purchase. We do not have access to your payment details. Lemon Squeezy's privacy policy governs how they handle your purchase data.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Website</h2>
+        <p>The tomoro.me website is hosted on Vercel. We do not use cookies, analytics, or tracking scripts on the website. Vercel may collect standard server logs (IP address, request metadata) as part of hosting — see Vercel's privacy policy for details.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Contact</h2>
+        <p>Questions about this policy? Email <a href="mailto:feedback@tomoro.me" class="text-[var(--accent)] hover:underline">feedback@tomoro.me</a>.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
