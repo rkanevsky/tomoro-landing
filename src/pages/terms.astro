@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Terms of Service — Tomoro"
+  description="Terms of Service for Tomoro, a desktop project tracker for freelancers."
+>
+  <Header />
+
+  <main class="px-6 lg:px-12 py-[100px] max-w-[700px] mx-auto">
+    <div class="text-xs uppercase tracking-[3px] text-[var(--accent)] font-semibold mb-3.5">Legal</div>
+    <h1 class="text-[32px] lg:text-[40px] font-bold tracking-[-1.5px] mb-3 leading-[1.15] text-[var(--text)]">Terms of Service</h1>
+    <p class="text-[14px] text-[var(--text-muted)] mb-14">Last updated: March 30, 2026</p>
+
+    <div class="space-y-10 text-[16px] text-[var(--text-secondary)] leading-[1.75]">
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Overview</h2>
+        <p>Tomoro is a desktop application for project tracking, time logging, and billing, created by Roman Kanevsky. By downloading or using Tomoro, you agree to these terms.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">License</h2>
+        <p>A Tomoro license is a one-time purchase that grants you a perpetual, non-exclusive, non-transferable right to use the software on one device at a time. Your license includes one year of software updates from the date of purchase. After that year, the app continues to work — you just won't receive new features unless you renew.</p>
+        <p class="mt-3">You may deactivate your license on one device and reactivate it on another at any time. Each license key supports one active device.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Free Trial</h2>
+        <p>Tomoro includes a 14-day free trial with full functionality. No account or payment information is required to start the trial. When the trial expires, the app locks — your data remains safe and accessible once you purchase a license.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Payments</h2>
+        <p>Payments are processed by <a href="https://www.lemonsqueezy.com" target="_blank" rel="noopener noreferrer" class="text-[var(--accent)] hover:underline">Lemon Squeezy</a>, which acts as the merchant of record. Lemon Squeezy handles all billing, tax collection, and payment processing. By purchasing Tomoro, you also agree to Lemon Squeezy's terms of service.</p>
+      </section>
+
+      <section id="refund">
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Refund Policy</h2>
+        <p>If Tomoro isn't right for you, you can request a full refund within 14 days of purchase — no questions asked. Contact <a href="mailto:feedback@tomoro.me" class="text-[var(--accent)] hover:underline">feedback@tomoro.me</a> with your order details.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Data & Privacy</h2>
+        <p>Tomoro stores all data locally on your device. We do not collect, transmit, or have access to your project data, time entries, or settings. For full details, see our <a href="/privacy" class="text-[var(--accent)] hover:underline">Privacy Policy</a>.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Limitation of Liability</h2>
+        <p>Tomoro is provided "as is" without warranty of any kind. To the maximum extent permitted by law, Roman Kanevsky shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of or inability to use the software.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Changes to These Terms</h2>
+        <p>These terms may be updated from time to time. The "Last updated" date at the top of this page reflects the most recent revision. Continued use of Tomoro after changes constitutes acceptance of the updated terms.</p>
+      </section>
+
+      <section>
+        <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Contact</h2>
+        <p>Questions about these terms? Email <a href="mailto:feedback@tomoro.me" class="text-[var(--accent)] hover:underline">feedback@tomoro.me</a>.</p>
+      </section>
+
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
