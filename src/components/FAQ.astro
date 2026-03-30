@@ -1,0 +1,21 @@
+<section class="px-6 lg:px-12 py-[100px] max-w-[700px] mx-auto">
+  <div class="text-xs uppercase tracking-[3px] text-[var(--accent)] font-semibold mb-3.5">FAQ</div>
+  <h2 class="text-[32px] lg:text-[40px] font-bold tracking-[-1.5px] mb-14 leading-[1.15] text-[var(--text)]">Common questions</h2>
+
+  {[
+    { q: 'What happens after the 14-day trial?', a: "The app locks — you can't log new time. But your data is safe. Buy a license and everything unlocks instantly. No data loss, ever." },
+    { q: 'Is my data stored in the cloud?', a: 'No. Everything stays on your machine in a local database. No accounts, no cloud sync, no telemetry. Your data is yours.' },
+    { q: 'Can I use it on multiple devices?', a: 'One license works on one device at a time. You can deactivate and transfer to a different machine anytime from the app settings.' },
+    { q: 'What happens after the first year of updates?', a: 'The app keeps working forever — your license is perpetual. After 1 year, you stop receiving new features. You can renew updates if you want them.' },
+    { q: 'Can I get a refund?', a: "Yes. If Tomoro isn't right for you, email us within 14 days of purchase for a full refund. No questions asked." },
+    { q: 'Does it work offline?', a: 'Yes. Tomoro works fully offline. It only needs internet once — to activate your license. After that, it validates periodically but gives you a 14-day grace period.' },
+  ].map(item => (
+    <div class="border-b border-[var(--border)] py-6 transition-all duration-200 hover:pl-2">
+      <div class="text-base font-semibold mb-2.5 tracking-[-0.2px] flex justify-between items-center">
+        {item.q}
+        <span class="text-xl text-[var(--text-muted)] font-normal shrink-0 ml-4">+</span>
+      </div>
+      <div class="text-[14.5px] text-[var(--text-secondary)] leading-[1.65]">{item.a}</div>
+    </div>
+  ))}
+</section>
