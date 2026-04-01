@@ -17,7 +17,9 @@ const { title, description } = Astro.props;
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href="https://tomoro.me/" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, 'https://tomoro.me').href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#e06830" />
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +29,7 @@ const { title, description } = Astro.props;
     <!-- OpenGraph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://tomoro.me/" />
+    <meta property="og:url" content={new URL(Astro.url.pathname, 'https://tomoro.me').href} />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://tomoro.me/og.png" />
 

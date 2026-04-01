@@ -36,22 +36,12 @@ import Footer from '../components/Footer.astro';
 
       <section>
         <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Network Requests</h2>
-        <p>Tomoro makes one type of network request: license validation. When you activate, validate, or deactivate a license, the app contacts the Lemon Squeezy API through a proxy at <code class="text-[14px] bg-[var(--bg-card)] px-1.5 py-0.5 rounded">tomoro.me/api/ls</code>. This request includes only:</p>
-        <ul class="list-disc pl-6 mt-3 space-y-1.5">
-          <li>Your license key</li>
-          <li>A device instance identifier (randomly generated, not tied to your identity)</li>
-        </ul>
-        <p class="mt-3">No personal data, project data, or usage information is included in these requests.</p>
+        <p>Tomoro makes one type of network request: license activation and validation. No personal data, project data, or usage information is ever sent.</p>
       </section>
 
       <section>
         <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Data Storage</h2>
-        <p>All your data — projects, time entries, rates, and settings — is stored locally on your device:</p>
-        <ul class="list-disc pl-6 mt-3 space-y-1.5">
-          <li><strong>macOS:</strong> <code class="text-[14px] bg-[var(--bg-card)] px-1.5 py-0.5 rounded">~/Library/Application Support/Tomoro</code></li>
-          <li><strong>Windows:</strong> <code class="text-[14px] bg-[var(--bg-card)] px-1.5 py-0.5 rounded">%APPDATA%/Tomoro</code></li>
-        </ul>
-        <p class="mt-3">This data is never transmitted to any server. Deleting the app or its data folder permanently removes all your data from the device.</p>
+        <p>All your data — projects, time entries, rates, and settings — is stored locally on your device. This data is never transmitted to any server. Deleting the app removes all your data from the device.</p>
       </section>
 
       <section>
@@ -61,7 +51,7 @@ import Footer from '../components/Footer.astro';
 
       <section>
         <h2 class="text-[20px] font-semibold text-[var(--text)] mb-3 tracking-[-0.3px]">Website</h2>
-        <p>The tomoro.me website is hosted on Vercel. We do not use cookies, analytics, or tracking scripts on the website. Vercel may collect standard server logs (IP address, request metadata) as part of hosting — see Vercel's privacy policy for details.</p>
+        <p>We do not use cookies, analytics, or tracking scripts on the website.</p>
       </section>
 
       <section>
