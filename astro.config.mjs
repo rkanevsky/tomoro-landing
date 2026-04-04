@@ -8,6 +8,9 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(),
   integrations: [sitemap()],
+  redirects: {
+    '/pricing': '/#pricing',
+  },
   vite: {
     plugins: [tailwindcss()],
   },
