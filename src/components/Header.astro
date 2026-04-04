@@ -3,7 +3,10 @@ import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header class="sticky top-0 z-50 border-b border-[color-mix(in_srgb,var(--border)_60%,transparent)] px-6 lg:px-12 py-3.5 flex justify-between items-center transition-colors duration-300" style="background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%);">
-  <a href="/" class="text-[22px] font-extrabold text-[var(--text)] tracking-tight no-underline">tomoro</a>
+  <a href="/" class="flex items-center gap-2.5 no-underline">
+    <img src="/icon.png" alt="Tomoro" width="28" height="28" class="rounded-[6px]" />
+    <span class="text-[22px] font-extrabold text-[var(--text)] tracking-tight">tomoro</span>
+  </a>
   <nav class="flex items-center gap-8">
     <a href="/#features" class="hidden lg:inline text-sm text-[var(--text-secondary)] font-medium no-underline hover:text-[var(--text)] transition-colors">Features</a>
     <a href="/#pricing" class="hidden lg:inline text-sm text-[var(--text-secondary)] font-medium no-underline hover:text-[var(--text)] transition-colors">Pricing</a>
