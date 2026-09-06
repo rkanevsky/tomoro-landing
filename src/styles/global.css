@@ -10,36 +10,57 @@
   --color-accent-hover: var(--accent-hover);
   --color-border: var(--border);
   --color-white: var(--white);
-  --color-green: #2aca44;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+/* ---------------------------------------------------------------
+   Palette: Ink & Emerald (Direction B)
+   Paper-and-ink neutrals carrying a whisper of the accent hue,
+   with one restrained green — the app's own primary — doing all
+   the accent work. Two hues total: emerald, and bronze as the
+   single secondary for badges and ratings.
+   --------------------------------------------------------------- */
+
 :root {
-  --bg: #fffbf5;
-  --bg-card: #f5efe8;
-  --text: #2d2a26;
-  --text-secondary: #7a7168;
-  --text-muted: #b8a99a;
-  --accent: #e06830;
-  --accent-hover: #c85a28;
-  --accent-soft: rgba(224, 104, 48, 0.08);
-  --border: #e8e0d5;
+  --bg: #fafaf9;
+  --bg-card: #f1f1ef;
+  --text: #171818;
+  --text-secondary: #55585a;
+  --text-muted: #696d6f;
+  --accent: #046b4e;
+  --accent-hover: #03543d;
+  --accent-soft: rgba(4, 107, 78, 0.09);
+  --border: #e2e3e1;
+  /* Doubles as the on-accent label colour and the elevated card surface. */
   --white: #ffffff;
-  --green: #2aca44;
+  /* Single secondary hue — Early Bird badge and testimonial stars. */
+  --badge: #8a5a2b;
+  /* Identity chips only. Never the accent, so they cannot read as a CTA. */
+  --avatar-1: #44515a;
+  --avatar-2: #8a5a2b;
+  --avatar-3: #5a4a6b;
+  /* Ink used for ambient drop shadows. */
+  --shadow-ink: #171818;
+  --grid-line: rgba(120, 126, 124, 0.03);
 }
 
 html.dark {
-  --bg: #1a1816;
-  --bg-card: #242120;
-  --text: #e8e0d5;
-  --text-secondary: #a69d94;
-  --text-muted: #6b6158;
-  --accent: #e06830;
-  --accent-hover: #f07040;
-  --accent-soft: rgba(224, 104, 48, 0.12);
-  --border: #332e2a;
-  --white: #1f1c1a;
-  --green: #2aca44;
+  --bg: #0e1011;
+  --bg-card: #171a1a;
+  --text: #e8eae8;
+  --text-secondary: #a0a5a3;
+  --text-muted: #848a88;
+  --accent: #34d399;
+  --accent-hover: #5ee7b4;
+  --accent-soft: rgba(52, 211, 153, 0.14);
+  --border: #262a29;
+  --white: #121514;
+  --badge: #d9a05b;
+  --avatar-1: #8fa3b0;
+  --avatar-2: #d9a05b;
+  --avatar-3: #a99ac0;
+  --shadow-ink: #000000;
+  --grid-line: rgba(150, 158, 155, 0.035);
 }
 
 body {
@@ -58,8 +79,8 @@ body::before {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(128, 120, 110, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(128, 120, 110, 0.03) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 64px 64px;
   pointer-events: none;
   z-index: 0;
